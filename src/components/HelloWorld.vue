@@ -7,7 +7,8 @@ import VideoCapture from './VideoCapture.vue';
 import { ref, onMounted } from "vue";
 import type { Ref } from 'vue'
 const bShowScanner: Ref<boolean> = ref(true);
-const bShowImgDecode: Ref<boolean> = ref(false)
+const bShowImgDecode: Ref<boolean> = ref(false);
+  const result = ref(null);
 onMounted(async () => {
   // try {
   //   //Load the library on page load to speed things up.
@@ -29,6 +30,12 @@ const showImgDecode = () => {
   bShowScanner.value = false;
   bShowImgDecode.value = true;
 }
+
+const readBarcode =(val: any) => {
+  result.value = val;
+  bShowScanner.value = false; 
+  bShowImgDecode.value=true
+}
 </script>
 
 <template>
@@ -41,9 +48,10 @@ const showImgDecode = () => {
         Decode</button>
     </div>
     <div class="container">
-      <VideoCapture v-if="bShowScanner"></VideoCapture>
+      <VideoCapture v-if="bShowScanner" @readBarcode="readBarcode"></VideoCapture>
       <!-- <ImgDecode v-if="bShowImgDecode"></ImgDecode> -->
     </div>
+    <p style="color: white; font-size: 2rem;">{{ result }}</p>
   </div>
 </template>
 

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { onMounted, onBeforeUnmount, ref, type Ref } from "vue";
+
 import "../dbr";
 import { CameraEnhancer, CameraView } from "dynamsoft-camera-enhancer";
 import { CaptureVisionRouter } from "dynamsoft-capture-vision-router";
@@ -16,6 +17,8 @@ let bDestoryed = false;
 
 let cvRouter:CaptureVisionRouter;
 let cameraEnhancer:CameraEnhancer;
+
+const emit = defineEmits(['readBarcode'])
 
 onMounted(async () => {
 
@@ -40,13 +43,14 @@ onMounted(async () => {
 
       resultsContainer.value!.textContent = '';
       console.log(result);
-      for (let item of result.barcodeResultItems) {
+    //   for (let item of result.barcodeResultItems) {
         resultsContainer.value!.append(
-          `${item.formatString}: ${item.text}`,
+          `${result.barcodeResultItems[0].formatString}: ${result.barcodeResultItems[0].text}`,
           document.createElement('br'),
           document.createElement('hr'),
         );
-      }
+    //   }
+        emit('readBarcode', result.barcodeResultItems[0].text);
     }});
 
     // Filter out unchecked and duplicate results.
