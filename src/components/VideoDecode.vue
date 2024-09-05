@@ -1,4 +1,4 @@
-<script lang="ts" setup>
+<!-- <script lang="ts" setup>
 import { onBeforeUnmount, onMounted, ref, getCurrentInstance } from "vue";
 import type { Ref } from 'vue'
 import { BarcodeScanner } from 'dynamsoft-javascript-barcode';
@@ -229,4 +229,4 @@ onBeforeUnmount(async () => {
     top: 97%;
   }
 }
-</style>
+</style> -->

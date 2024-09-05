@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<!-- <script setup lang="ts">
 import { onBeforeUnmount, ref } from "vue";
 import type { Ref } from 'vue'
 import { BarcodeReader } from 'dynamsoft-javascript-barcode'
@@ -43,4 +43,4 @@ onBeforeUnmount(async () => {
   align-items: center;
   border: 1px solid black
 }
-</style>
+</style> -->

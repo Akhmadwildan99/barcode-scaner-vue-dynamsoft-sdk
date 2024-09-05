@@ -1,24 +1,25 @@
 <script setup lang="ts">
-import "../dbr"; // import side effects. The license, engineResourcePath, so on.
-import { BarcodeScanner } from 'dynamsoft-javascript-barcode'
-import VideoDecode from "./VideoDecode.vue";
-import ImgDecode from './ImgDecode.vue'
+// import "../dbr"; // import side effects. The license, engineResourcePath, so on.
+// import { BarcodeScanner } from 'dynamsoft-javascript-barcode'
+// import VideoDecode from "./VideoDecode.vue";
+import ImgDecode from './ImgDecode.vue';
+import VideoCapture from './VideoCapture.vue';
 import { ref, onMounted } from "vue";
 import type { Ref } from 'vue'
 const bShowScanner: Ref<boolean> = ref(true);
 const bShowImgDecode: Ref<boolean> = ref(false)
 onMounted(async () => {
-  try {
-    //Load the library on page load to speed things up.
-    await BarcodeScanner.loadWasm();
-  } catch (ex:any) {
-    let errMsg = ex.message||ex;
-    if (errMsg.includes("network connection error")) {
-      errMsg = "Failed to connect to Dynamsoft License Server: network connection error. Check your Internet connection or contact Dynamsoft Support (support@dynamsoft.com) to acquire an offline license.";
-    }
-    console.error(errMsg);
-    alert(errMsg);
-  }
+  // try {
+  //   //Load the library on page load to speed things up.
+  //   await BarcodeScanner.loadWasm();
+  // } catch (ex:any) {
+  //   let errMsg = ex.message||ex;
+  //   if (errMsg.includes("network connection error")) {
+  //     errMsg = "Failed to connect to Dynamsoft License Server: network connection error. Check your Internet connection or contact Dynamsoft Support (support@dynamsoft.com) to acquire an offline license.";
+  //   }
+  //   console.error(errMsg);
+  //   alert(errMsg);
+  // }
 });
 const showScanner = () => {
   bShowScanner.value = true;
@@ -40,8 +41,8 @@ const showImgDecode = () => {
         Decode</button>
     </div>
     <div class="container">
-      <VideoDecode v-if="bShowScanner"></VideoDecode>
-      <ImgDecode v-if="bShowImgDecode"></ImgDecode>
+      <VideoCapture v-if="bShowScanner"></VideoCapture>
+      <!-- <ImgDecode v-if="bShowImgDecode"></ImgDecode> -->
     </div>
   </div>
 </template>
